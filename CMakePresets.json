@@ -1,0 +1,56 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Firmware (Debug)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "toolchainFile": "${sourceDir}/xmos_cmake_toolchain/xs3a.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Firmware (Release)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "toolchainFile": "${sourceDir}/xmos_cmake_toolchain/xs3a.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "MinSizeRel"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug-build",
+      "configurePreset": "debug",
+      "displayName": "Firmware build (Debug)",
+      "targets": [ "xmos-test" ]
+    },
+    {
+      "name": "debug-flash",
+      "configurePreset": "debug",
+      "displayName": "Firmware build & flash (Debug)",
+      "targets": [ "xmos-test", "run" ]
+    },
+    {
+      "name": "release-build",
+      "configurePreset": "release",
+      "displayName": "Firmware build (Release)",
+      "targets": [ "xmos-test" ]
+    },
+    {
+      "name": "release-flash",
+      "configurePreset": "release",
+      "displayName": "Firmware build & flash (Release)",
+      "targets": [ "xmos-test", "run" ]
+    }
+  ]
+}
